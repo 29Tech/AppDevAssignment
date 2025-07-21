@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Points Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profilepage.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- the standard header -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <div class="sidenav">
+        <img class="logo" src="{{ url_for('static', filename='Logo.jpg')}}">
+        <div class="navbuttons">
+            <a href="/Collab1">Our Collaborations</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/subscription">Promotion</a>
+            <a href="/productUser">Store</a>
+            <i class="bi bi-cart"><a href="cart"></a></i>
+            {% if username %}
+            <li class="username">
+                <img src="../static/images/accountLOGO.png" alt="accountlogo" class="account-logo">
+                <span>{{ username }}</span>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('my_account') }}" class="dropDownListMyAccount"><button>My Account</button></a>
+                    <button onclick="window.location.href='profile';">My DonPoints</button>
+                    <button onclick="window.location.href='retrieveReceipts';">My Purchases</button>
+                    <button onclick="window.location.href='retrieveDonations';">My Donations</button>
+
+                    {% if username == 'admin' %}
+                    <button onclick="window.location.href='productAdmin';">Admin</button>
+                    <button onclick="window.location.href='OurSubs';">View Subscribers</button>
+                    {% endif %}
+
+                    <button onclick="window.location.href='signout';">Logout</button>
+                </div>
+            </li>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <a class="backbutton" href="{{ url_for('login') }}">
+        <img class="back" src="{{ url_for('static', filename='backbutton.png') }}">
+    </a>
+
+    <img src="{{ url_for('static', filename='donapp.png') }}" class="donapp">
+    <h3>Welcome, {{ session['username'] if session.get('username') else 'Guest' }}</h3>
+    <p>Cumulative Points: {{ cumulative_points }}</p>
+    <p>Spendable Points: {{ spendable_points }}</p>
+
+
+    <div class="progress-bar-container">
+        <div class="progress-bar" style="width: {{ percentage }}%;">
+            {{ percentage if percentage is not none else 0|round(2) }}%
+        </div>
+    </div>
+
+    {% if points_left > 0 %}
+    <p>You need <strong>{{ points_left }}</strong> more points to reach the next tier of {{ MAX_POINTS }} points!</p>
+    {% else %}
+    <p>Congratulations! You've reached {{ cumulative_points }} points and are now eligible for an upgrade to the next tier!</p>
+    {% endif %}
+
+    <a href="{{ url_for('points') }}">
+        <button>Go to Points</button>
+    </a>
+
+    <a href="{{ url_for('redeempoints') }}">
+        <button>Redeem Items</button>
+    </a>
+
+    <h2>Your Redeemed Items</h2>
+    {% if redeemed_items %}
+    <ul>
+        {% for item in redeemed_items %}
+        <li>{{ item.item }} - {{ item.price }} points (Delivered to: {{ item.address }})</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>You have not redeemed any items yet.</p>
+    {% endif %}
+
+</body>
+
+</html>

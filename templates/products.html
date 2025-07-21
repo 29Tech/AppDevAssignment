@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div>
+    <a href="/"><img class="back" src="{{ url_for('static', filename='backbutton.png')}}"></a>
+    <h1 class = "display-4">Products (Admin) </h1>
+    
+    <form action="/add_product" method="POST" enctype="multipart/form-data" class="add-product">
+        <div class = "display-row">
+            <label for="name">Product Name:</label><br>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class = "display-row">
+            <label for="price">Price:</label><br>
+            <input type="text" id="price" name="price" required>
+        </div>
+        <div class = "display-row">
+            <label for="discount">Discount:</label><br>
+            <input type="number" id="discount" name="discount" required min="0" max="1" step="0.01" placeholder="0.00">
+        </div>
+        <div>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class = "display-row">
+            <label for="image">Product Image:</label><br>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="addProduct">Add Product</button>
+    </form>
+    
+    <div class = "productList">
+        {% if items %}
+            {% for item in items %}
+                <div class="product-card">
+                    <h2>{{ item.name }}</h2>
+                    <p>Price: ${{ item.price }}</p>
+                    <p>Discount: ${{ item.discount }}</p>
+                    <form action="/delete_product/{{ item.id }}" method="POST" style="display: inline;">
+                        <button type="submit" class = "deleteProduct">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No products added yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Don Don Donki - Home{% endblock %}
+
+{% block content %}
+
+<a href="/"><img class="back" src="{{ url_for('static', filename='backbutton.png')}}"></a>
+<h1 class="title">Be Sustainable!</h1>
+<div class="Sub-container">
+    <div class="top">
+        <p class="main">Come with us to find out how you can live more sustainably!</p>
+        <p class="main">You can be more educated on the matter of Sustainability while shopping by following us!</p>
+        <div class="sustainability-tips">
+            <p>If you're not interested in the products we offer in the flash deals, there are other ways to be sustainable while shopping:</p>
+            <ul>
+                <li><b>Bring your own Recycling Bag</b> to avoid plastic waste</li>
+                <li><b>Not Wasting Food</b>, eat or donate what you buy</li>
+                <li><b>Buy What You Need</b> only</li>
+                <li><b>Choose Healthy and Eco-Friendly Foods</b> to minimize environmental impact</li>
+            </ul>
+        </div>
+        <p class="Subtext">You can subscribe through our newsletter to get the latest information on our rewards and promotions via your email so that you too, can remain sustainable!</p>
+        <a href="{{ url_for('create_sub') }}" class="btn btn-primary btn-center learn-more">Subscribe Now!</a>
+    </div>
+
+    <div class="right-section">
+        <img src="{{ url_for('static', filename='sus.jpg') }}" alt="Poster Image">
+    </div>
+</div>
+
+
+<h1 class="title" style="padding-top: 5px; ">Play our game</h1>
+
+<div class="container" style="margin-top: 50px; background-color: #FFC312;">
+    <h1>Spin the Wheel!</h1>
+    <div class="top">
+        <p class="main" style="margin-bottom: 0px;">Come and spin our Sustainability Wheel!</p>
+        <p class="Subtext" style="margin-top: 0px;">You get the chance of <b>One spin a week!</b> However, you will need to sign up for the newsletter for you to claim your reward!</p>
+    </div>
+    <div class="wheel-container">
+        <img id="wheel" src="/static/images/wheel.png" class="wheel">
+    </div>
+        <button id="spin-button" class="spin-button container">Spin</button>
+      <!-- Result Popup Modal -->
+        <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="resultModalLabel">Spin Results</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="background-color: #FFFFFF;">
+                        <p id="resultText" style="font-weight: bold;"></p>
+                        <p>Sign up and get the reward promo code in your email.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/createSub" class="btn btn-primary">Sign Up</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const wheel = document.getElementById("wheel");
+        const spinButton = document.getElementById("spin-button");
+        const resultText = document.getElementById("resultText"); // Element to display result in modal
+        const resultModal = new bootstrap.Modal(document.getElementById('resultModal')); // Bootstrap modal instance
+
+        let spinning = false;
+        let currentRotation = 0;
+
+        spinButton.addEventListener("click", function() {
+            if (spinning) return; // Prevent multiple spins
+            spinning = true;
+
+            fetch("/subHome", { method: "POST" })  // Fix route name
+                .then(response => response.json())
+                .then(data => {
+                    let randomDegree = Math.floor(Math.random() * 360) + 1800; // Ensures multiple spins
+                    currentRotation += randomDegree; // Accumulate rotation for smooth spinning
+
+                    wheel.style.transition = "transform 3s ease-out";
+                    wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+                    setTimeout(() => {
+                        // Display the result in the modal
+                        resultText.innerText = `You got... ${data.prize}!`;
+                        resultModal.show(); // Show the modal
+                        spinning = false;
+                    }, 3000);
+                });
+        });
+    });
+
+</script>
+
+{% endblock %}

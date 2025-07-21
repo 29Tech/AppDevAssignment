@@ -1,0 +1,43 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='navbar.css') }}">
+<div class="sidenav">
+  <img class="logo" src="{{ url_for('static', filename='Logo.jpg')}}">
+  <div class="navbuttons">
+    <a href="/Collab1">Our Collaborations</a>
+    <a href="/aboutus">About Us</a>
+    <a href="/subscription">Promotion</a>
+    <a href="/productUser">Store</a>
+    <a href = "/cart"><i class="bi bi-cart"></i></a>
+    {% if username %}
+      <li class="username">
+        <img src="../static/images/accountLOGO.png" alt="accountlogo" class="account-logo">
+        <span>{{ username }}</span>
+        <div class="dropdown-content">
+          <button onclick="window.location.href='myaccount';" class="dropDownListMyAccount">My Account</button>
+          <button onclick="window.location.href='profile';">My DonPoints</button>
+          <button onclick="window.location.href='retrieveReceipts';">My Purchases</button>
+          <button onclick="window.location.href='retrieveDonations';">My Donations</button>
+          {% if username == 'admin' %}
+            <button onclick="window.location.href='productAdmin';">Admin</button>
+            <button onclick="window.location.href='OurSubs';">View Subscribers</button>
+          {% endif %}
+          <button onclick="window.location.href='signout';">Logout</button>
+        </div>
+      </li>
+    {% else %}
+      <div class="logo1">
+        <img src="../static/images/login_cartoon.png" alt="Logo Cartoon" id="logoCartoon">
+      </div>
+
+      <div id="modal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Login or Register</h2>
+              <button id="loginBtn" onclick="window.location.href='/login';">Login</button>
+              <button id="registerBtn" onclick="window.location.href='/signup';">Register</button>
+          </div>
+      </div>
+      <script src="../static/js/homepage.js"></script>
+    {% endif %}
+  </div>
+</div>

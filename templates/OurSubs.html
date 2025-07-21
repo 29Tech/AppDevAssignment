@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Don Don Donki - Retrieve Users{% endblock %}
+
+{% block content %}
+<div class="container">
+  <a href="{{ url_for('subHome') }}" class="btn btn-secondary back-button">Back!</a>
+  <h1 class="title">Our Users</h1>
+  <div>
+    {% if count == 0 %}
+      <p>There are no users at the current moment...</p>
+    {% elif count == 1 %}
+      <p>We currently only have 1 user...</p>
+    {% else %}
+      <p>We currently have {{ count }} users!</p>
+    {% endif %}
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr class="user-heading">
+          <th>User Number</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Email</th>
+          <th>Remarks</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sub in subs_list %}
+          <tr>
+            <td>{{ sub.get_sub_id() }}</td>
+            <td>{{ sub.get_first_name() }}</td>
+            <td>{{ sub.get_last_name() }}</td>
+            <td>{{ sub.get_gender() }}</td>
+            <td>{{ sub.get_email() }}</td>
+            <td>{{ sub.get_remarks() }}</td>
+            <td><a href="/updateSub/{{ sub.get_sub_id() }}" class="btn btn-warning">Update</a></td>
+            <td>
+              <form action="{{ url_for('delete_sub', id=sub.get_sub_id()) }}" method="POST">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal_{{ sub.get_sub_id() }}">
+                  Delete
+                </button>
+                <div class="modal"  id="myModal_{{sub.get_sub_id()}}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Confirmation</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete {{sub.get_first_name()}} {{sub.get_last_name()}}?
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

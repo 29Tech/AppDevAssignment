@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem Confirmation - Donki Mart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='redeemconfirmation.css') }}">
+</head>
+
+<body>
+
+    <!-- the standard header -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <div class="sidenav">
+        <img class="logo" src="{{ url_for('static', filename='Logo.jpg')}}">
+        <div class="navbuttons">
+            <a href="/Collab1">Our Collaborations</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/subscription">Promotion</a>
+            <a href="/profile">DonPoints</a>
+            <a href="/productUser">Store</a>
+            <i class="bi bi-cart"><a href="cart"></a></i>
+            {% if username %}
+            <li class="username">
+                <img src="../static/images/accountLOGO.png" alt="accountlogo" class="account-logo">
+                <span>{{ username }}</span>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('my_account') }}" class="dropDownListMyAccount"><button>My Account</button></a>
+                    <button onclick="window.location.href='profile';">My DonPoints</button>
+                    <button onclick="window.location.href='retrieveReceipts';">My Purchases</button>
+                    <button onclick="window.location.href='retrieveDonations';">My Donations</button>
+
+                    {% if username == 'admin' %}
+                    <button onclick="window.location.href='productAdmin';">Admin</button>
+                    <button onclick="window.location.href='OurSubs';">View Subscribers</button>
+                    {% endif %}
+
+                    <button onclick="window.location.href='signout';">Logout</button>
+                </div>
+            </li>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Main Redemption Section -->
+    <section class="redeem-container">
+        <h1>Confirm Your Redemption</h1>
+
+        <!-- Success / Error Message -->
+        {% if message %}
+        <p class="message">{{ message }}</p>
+        {% endif %}
+
+        <div class="redeem-box">
+            <img src="{{ url_for('static', filename=item['image']) }}" alt="Item Image" class="item-img">
+            <div class="item-details">
+                <h2>{{ item['name'] }}</h2>
+                <p><strong>Price:</strong> {{ item['price'] }} points</p>
+                <p><strong>Stock Left:</strong> {{ item['stock'] }}</p>
+                <p><strong>Your Spendable Points:</strong> {{ spendable_points }}</p>
+            </div>
+        </div>
+
+        {% if spendable_points >= item['price'] %}
+        <form action="{{ url_for('redeem_confirmation', item_name=item['name']) }}" method="POST" class="redeem-form">
+            <label for="address">Enter your delivery address:</label>
+            <textarea name="address" id="address" placeholder="Enter your address here" required></textarea><br>
+            <button type="submit" class="redeem-btn">Confirm Redemption</button>
+        </form>
+        {% else %}
+        <p class="error">You do not have enough points or the item is out of stock.</p>
+        {% endif %}
+    </section>
+
+</body>
+
+</html>

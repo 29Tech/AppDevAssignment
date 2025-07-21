@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Don Don Donki</title>
+  <link rel="stylesheet" href="../static/aftlogin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidenav">
+    <img class="logo" src="{{ url_for('static', filename='Logo.jpg') }}">
+    <div class="navbuttons">
+      <a href="/Collab1">Our Collaborations</a>
+      <a href="/aboutus">About Us</a>
+      <a href="/subscription">Promotion</a>
+      <a href="/productUser">Store</a>
+      <i class="bi bi-cart"><a href="cart"></a></i>
+
+      {% if username %}
+        <li class="username">
+          <img src="../static/images/accountLOGO.png" alt="accountlogo" class="account-logo">
+          <span>{{ username }}</span>
+          <div class="dropdown-content">
+            <a href="{{ url_for('my_account') }}" class="dropDownListMyAccount"><button>My Account</button></a>
+            <button onclick="window.location.href='profile';">My DonPoints</button>
+            <button onclick="window.location.href='retrieveReceipts';">My Purchases</button>
+            <button onclick="window.location.href='retrieveDonations';">My Donations</button>
+
+            {% if username == 'admin' %}
+              <button onclick="window.location.href='productAdmin';">Admin</button>
+              <button onclick="window.location.href='OurSubs';">View Subscribers</button>
+            {% endif %}
+
+            <button onclick="window.location.href='signout';">Logout</button>
+          </div>
+        </li>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <h1>WELCOME TO</h1>
+    <h2>DON DON DONKI</h2>
+    <button class="learn-more" onclick="window.location.href='/aboutus';">LEARN MORE</button>
+  </main>
+
+  <script src="../static/js/homepage.js"></script>
+</body>
+</html>

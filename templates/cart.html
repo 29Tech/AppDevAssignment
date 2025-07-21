@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<script>
+    async function updateCart(itemId, action) {
+        const response = await fetch('/cart/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ item_id: itemId, action: action })
+        });
+
+        const data = await response.json();
+        refreshCart(data.cart);  // Update the cart with new data
+    }
+
+    function refreshCart(cart) {
+        const itemList = document.getElementById("cart-items");
+        itemList.innerHTML = "";  // Clear existing items
+
+        if (cart.length === 0) {
+            itemList.innerHTML = '<p class="no-products">No products found</p>';
+            return;
+        }
+
+        cart.forEach(item => {
+            let listItem = document.createElement("div");
+            listItem.id = `item-${item.id}`;
+            listItem.classList.add("counter");
+            listItem.innerHTML = `
+                <li>${item.name} - $${item.price}</li>
+                <button class="minus" onclick="updateCart('${item.id}', 'remove')">-</button>
+                <div id="counter-${item.id}" class="counter">${item.quantity}</div>
+                <button class="add" onclick="updateCart('${item.id}', 'add')">+</button>
+            `;
+            itemList.appendChild(listItem);
+        });
+    }
+</script>
+
+<a href="/productUser"><img class="back" src="{{ url_for('static', filename='backbutton.png') }}"></a>
+
+<div class="mainBody">
+    <div class="itemList">
+        <p class="title">Your Items</p>
+        <div class="items">
+            <ul id="cart-items">
+                {% if items %}
+                    {% for item in items %}
+                        <div id="item-{{ item.id }}" class="counter">
+                            <li>{{ item.name }} - ${{ item.discountedPrice }}</li>
+                            <button class="minus" onclick="updateCart('{{ item.id }}', 'remove')">-</button>
+                            <div id="counter-{{ item.id }}" class="counter">{{ item.quantity }}</div>
+                            <button class="add" onclick="updateCart('{{ item.id }}', 'add')">+</button>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-products">No products found</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="payButton">
+    <a class="paymentButton" href="/payment">Go To Pay</a>
+</div>
+
+{% endblock %}

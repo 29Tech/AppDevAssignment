@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donki Mart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pointsite.css') }}">
+</head>
+
+<body>
+
+
+
+  <!-- the standard header -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <div class="sidenav">
+    <img class="logo" src="{{ url_for('static', filename='Logo.jpg')}}">
+    <div class="navbuttons">
+      <a href="/Collab1">Our Collaborations</a>
+      <a href="/aboutus">About Us</a>
+      <a href="/subscription">Promotion</a>
+      <a href="/profile">DonPoints</a>
+      <a href="/productUser">Store</a>
+      <i class="bi bi-cart"><a href="cart"></a></i>
+      {% if username %}
+        <li class="username">
+          <img src="../static/images/accountLOGO.png" alt="accountlogo" class="account-logo">
+          <span>{{ username }}</span>
+          <div class="dropdown-content">
+            <a href="{{ url_for('my_account') }}" class="dropDownListMyAccount"><button>My Account</button></a>
+            <button onclick="window.location.href='profile';">My DonPoints</button>
+            <button onclick="window.location.href='retrieveReceipts';">My Purchases</button>
+            <button onclick="window.location.href='retrieveDonations';">My Donations</button>
+
+            {% if username == 'admin' %}
+              <button onclick="window.location.href='productAdmin';">Admin</button>
+              <button onclick="window.location.href='OurSubs';">View Subscribers</button>
+            {% endif %}
+
+            <button onclick="window.location.href='signout';">Logout</button>
+          </div>
+        </li>
+      {% endif %}
+    </div>
+  </div>
+  <a class = "backbutton" href="/profile"><img class="back" src="{{ url_for('static', filename='backbutton.png')}}"></a>
+
+  <div class="pointsbackground">
+    <div class="table-container">
+
+      <h2>RANK and dMiles</h2>
+      <div class="rank-table">
+        <div class="row">
+          <div class="rank">BRONZE</div>
+          <div class="rate">1x Rate</div>
+          <div class="range">$0 - $1,999</div>
+        </div>
+        <div class="row">
+          <div class="rank">SILVER</div>
+          <div class="rate">2x Rate</div>
+          <div class="range">$2,000 - $4,999</div>
+        </div>
+        <div class="row">
+          <div class="rank">GOLD</div>
+          <div class="rate">3x Rate</div>
+          <div class="range">$5,000 - $14,999</div>
+        </div>
+        <div class="row">
+          <div class="rank">PLATINUM</div>
+          <div class="rate">4x Rate</div>
+          <div class="range">$15,000 ~</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donki Mart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/homepage.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="sidenav">
+  <img class="logo" src="{{ url_for('static', filename='Logo.jpg')}}">
+    <div class="navbuttons">
+      <a href="/Collab1">Our Collaborations</a>
+      <a href="/aboutus">About Us</a>
+      <a href="/subscription">Promotion</a>
+      <a href="/productUser">Store</a>
+      <i class="bi bi-cart"><a href = "/cart"></a></i>
+      <div class="logo1">
+        <img src="../static/images/login_cartoon.png" alt="Logo Cartoon" id="logoCartoon">
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <h1>WELCOME TO</h1>
+    <h2>Donki Mart</h2>
+    <button class="learn-more" onclick="window.location.href='/aboutus';">LEARN MORE</button>
+  </main>
+
+  <!-- Modal Section -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login or Register</h2>
+      <button id="loginBtn" onclick="window.location.href='/login';">Login</button>
+      <button id="registerBtn" onclick="window.location.href='/signup';">Register</button>
+    </div>
+  </div>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartIcon = document.querySelector('.bi-cart');
+      cartIcon.addEventListener('click', () => {
+        window.location.href = '/cart'; // Redirect to cart page
+      });
+    });
+  </script>
+<script src="../static/js/homepage.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div class="productUserBody">
+
+    <a href="/"><img class="back" src="{{ url_for('static', filename='backbutton.png')}}"></a>
+
+    <div class="listClass">
+        <div class="productList">
+            {% if items %}
+            {% for item in items %}
+            <div class="product-card">
+                <h2>{{ item.name }}</h2>
+                <p>Discounted Price: ${{ item.discountedPrice }}</p>
+                <p>Discount: {{ item.discountPercent }}%</p>
+                {% if item.image_url %}
+                <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}" class="product-image">
+                {% endif %}
+                <p class = "productDesc">{{ item.description[:50] }}...</p>
+                <a href="{{ url_for('product_details', product_id=item.id) }}" class="find-out-more">Find Out
+                    More</a>
+                <form action="/add_to_cart/{{ item.id }}" method="POST" style="display: inline;">
+                    <input type="hidden" name="product_id" value="{{ item.id }}">
+                    <button type="submit" class="addToCart">Add to Cart</button>
+                </form>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No products added yet.</p>
+            {% endif %}
+        </div>
+
+        <div class="cart-box">
+            <h2>Cart</h2>
+            <div class="cartSummary">
+                <ul id="cart-items">
+                    {% if user.cart %}
+                        {% for item in user.cart.values() %}
+                            <li id="item-{{ item.id }}" class="counter">
+                                {{ item.name }} - ${{ item.price }}
+                                <button onclick="updateCart('{{ item.id }}', 'remove')">-</button>
+                                <span id="quantity-{{ item.id }}">{{ item.quantity }}</span>
+                                <button onclick="updateCart('{{ item.id }}', 'add')">+</button>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <p id="empty-cart">Your cart is empty.</p>
+                    {% endif %}
+                </ul>
+            </div>
+            <a href="/cart" class="goToCartButton">Go to Cart</a>
+        </div>
+    </div>
+    <div class="pagination">
+        {% if page > 1 %}
+        <a href="{{ url_for('product', page=page-1) }}" class="prev">Previous</a>
+        {% endif %}
+        <span>Page {{ page }} of {{ total_pages }}</span>
+        {% if page < total_pages %} <a href="{{ url_for('product', page=page+1) }}" class="next">Next</a>
+            {% endif %}
+    </div>
+</div>
+<script>
+    function refreshCart(cart) {
+        const itemList = document.getElementById("cart-items");
+        itemList.innerHTML = "";  // Clear existing items
+
+        if (Object.keys(cart).length === 0) {
+            itemList.innerHTML = '<p class="no-products">No products in cart</p>';
+            return;
+        }
+
+        Object.values(cart).forEach(item => {
+            const priceFormatted = parseFloat(item.price).toFixed(2);
+
+            const listItem = document.createElement("div");
+            listItem.id = `item-${item.id}`;
+            listItem.classList.add("counter");
+
+            listItem.innerHTML = `
+                <li>${item.name} - $${priceFormatted}</li>
+                <button class="minus" onclick="updateCart('${item.id}', 'remove')">-</button>
+                <div id="counter-${item.id}" class="counter">${item.quantity}</div>
+                <button class="add" onclick="updateCart('${item.id}', 'add')">+</button>
+            `;
+            itemList.appendChild(listItem);
+        });
+    }
+
+    async function updateCart(itemId, action) {
+        const response = await fetch('/cart/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ item_id: itemId, action: action })
+        });
+
+        const data = await response.json();
+        refreshCart(data.cart);  // Update the cart content after backend processing
+    }
+</script>
+
+
+{% endblock %}

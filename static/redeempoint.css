@@ -1,0 +1,226 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FFD700; /* Fallback yellow background */
+  background-image: url('../static/images/background.jpg'); /* Background image */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating */
+  color: black;
+  text-align: center;
+}
+
+
+.logo{
+    width: 70px;
+    height: auto;
+}
+.sidenav{
+    display: flex;
+    padding: 20px;
+    background-color: #001f3f;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+
+.backbutton {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.navbuttons{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.navbuttons a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px;
+    color: white;
+}
+.username {
+    display: flex;
+    align-items: center;
+    /* Align logo and username vertically */
+    position: relative;
+    /* To position the dropdown */
+    color: white;
+    cursor: pointer;
+    /* Make the whole username clickable */
+}
+
+/* Account Logo */
+.username .account-logo {
+    width: 30px;
+    /* Adjust logo size */
+    height: auto;
+    /* Maintain aspect ratio */
+    border-radius: 50%;
+    /* Optional: make the logo circular */
+    margin-right: 10px;
+    /* Add space between the logo and username text */
+}
+
+/* Dropdown Content */
+.username .dropdown-content {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    /* Position dropdown below the username */
+    left: 0;
+    /* Align dropdown with the logo */
+    background-color: white;
+    /* White background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow */
+    z-index: 1000;
+    /* Ensure it appears on top */
+    border-radius: 6px;
+    /* Rounded corners */
+    min-width: 150px;
+    /* Set width for dropdown */
+    padding: 10px 0;
+    /* Padding inside the dropdown */
+}
+
+/* Dropdown Buttons */
+.username .dropdown-content button {
+    background-color: white;
+    /* White background */
+    color: black;
+    /* Default text color */
+    border: none;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    /* Full width of the dropdown */
+    cursor: pointer;
+    transition: color 0.3s;
+    /* Smooth transition for text color */
+}
+
+/* Hover Effects for Dropdown Buttons */
+.username .dropdown-content button:hover {
+    color: green;
+    /* Text turns green on hover */
+    background-color: white;
+    /* Keep background white */
+}
+
+/* Show Dropdown on Hover */
+.username:hover .dropdown-content {
+    display: block;
+    /* Show dropdown when hovering over the username */
+}
+
+.navbuttons a:hover{
+    color: #FFDD44;
+}
+
+.bi-cart {
+  font-size: 1.5rem; /* Set appropriate size */
+  color: white; /* Default color for the icon */
+  margin-left: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.bi-cart:hover {
+  color: #FFDD44; /* Change color on hover */
+  transform: scale(1.2); /* Slight zoom effect */
+}
+
+.redeem-container { /*container for items gng*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.redeem-item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.item-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.item-price {
+    font-size: 16px;
+    color: #555;
+}
+
+.redeem-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.redeem-button:hover {
+    background: #0056b3;
+}
+
+.not-enough {
+    color: red;
+    font-weight: bold;
+
+}
+.admin-panel {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #001f3f !important; /* Dark navy blue */
+    color: white; /* Ensure text is readable */
+}
+
+.admin-panel h2,
+.admin-panel h3 {
+    color: white; /* Change headings to white for contrast */
+}
+
+.admin-panel input,
+.admin-panel select,
+.admin-panel button {
+    display: block;
+    margin: 5px 0;
+    padding: 5px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.admin-panel button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.admin-panel button:hover {
+    background-color: #45a049;
+}

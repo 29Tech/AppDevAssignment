@@ -1,0 +1,169 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FFD700; /* Fallback yellow background */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating */
+  color: black;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #001f3f; /* Dark Navy Blue header */
+  position: sticky; /* Sticky header for better UX */
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 70px; /* Adjust logo size */
+  height: auto; /* Maintain aspect ratio */
+  cursor: pointer; /* Make logo clickable */
+}
+
+.logo{
+    width: 70px;
+    height: auto;
+}
+
+.navbuttons .dropDownListMyAccount {
+    margin: 0;
+}
+.sidenav{
+    display: flex;
+    padding: 20px;
+    background-color: #001f3f;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+
+.navbuttons{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.navbuttons a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbuttons a:hover{
+  color: #FFD700
+}
+
+/* Cart Icon */
+.bi-cart {
+  font-size: 1.5rem; /* Set appropriate size */
+  color: white; /* Default color for the icon */
+  margin-left: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.bi-cart:hover {
+  color: #FFDD44; /* Change color on hover */
+  transform: scale(1.2); /* Slight zoom effect */
+}
+
+/* Username and Account Dropdown */
+.username {
+  display: flex;
+  align-items: center; /* Align logo and username vertically */
+  position: relative; /* To position the dropdown */
+  color: white;
+  cursor: pointer; /* Make the whole username clickable */
+}
+
+/* Account Logo */
+.username .account-logo {
+  width: 30px; /* Adjust logo size */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 50%; /* Optional: make the logo circular */
+  margin-right: 10px; /* Add space between the logo and username text */
+}
+
+/* Dropdown Content */
+.username .dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  
+  top: 100%; /* Position dropdown below the username */
+  left: 0; /* Align dropdown with the logo */
+  background-color: white; /* White background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  z-index: 1000; /* Ensure it appears on top */
+  border-radius: 6px; /* Rounded corners */
+  min-width: 150px; /* Set width for dropdown */
+  padding: 10px 0; /* Padding inside the dropdown */
+}
+
+/* Dropdown Buttons */
+.username .dropdown-content button {
+  background-color: white; /* White background */
+  color: black; /* Default text color */
+  font-size: 16px;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  width: 100%; /* Full width of the dropdown */
+  cursor: pointer;
+  transition: color 0.3s; /* Smooth transition for text color */
+}
+
+/* Hover Effects for Dropdown Buttons */
+.username .dropdown-content button:hover {
+  color: green; /* Text turns green on hover */
+  background-color: white; /* Keep background white */
+}
+
+/* Show Dropdown on Hover */
+.username:hover .dropdown-content {
+  display: block; /* Show dropdown when hovering over the username */
+}
+
+/* Main Content */
+main {
+  margin-top: 50px;
+}
+
+main h1 {
+  font-size: 36px; /* Larger font size for emphasis */
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+main h2 {
+  font-size: 64px; /* Slightly larger font size for impact */
+  letter-spacing: 8px; /* Increase letter spacing for emphasis */
+  font-weight: 700; /* Make it bold */
+  text-transform: uppercase; /* Make all letters uppercase for a commanding look */
+  color: #000; /* Use a strong black color for readability */
+}
+
+.learn-more {
+  background-color: #001f3f; /* Dark Navy Blue */
+  color: white;
+  padding: 12px 24px;
+  font-size: 20px; /* Larger button for visibility */
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.learn-more:hover {
+  background-color: #00008B; /* Slightly brighter blue for hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}

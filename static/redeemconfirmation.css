@@ -1,0 +1,231 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FFD700; /* Fallback yellow background */
+  background-image: url('../static/images/background.jpg'); /* Background image */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating */
+  color: black;
+  text-align: center;
+}
+
+.logo{
+    width: 70px;
+    height: auto;
+}
+.sidenav{
+    display: flex;
+    padding: 20px;
+    background-color: #001f3f;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+
+.navbuttons{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.navbuttons a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px;
+    color: white;
+}
+.username {
+    display: flex;
+    align-items: center;
+    /* Align logo and username vertically */
+    position: relative;
+    /* To position the dropdown */
+    color: white;
+    cursor: pointer;
+    /* Make the whole username clickable */
+}
+
+/* Account Logo */
+.username .account-logo {
+    width: 30px;
+    /* Adjust logo size */
+    height: auto;
+    /* Maintain aspect ratio */
+    border-radius: 50%;
+    /* Optional: make the logo circular */
+    margin-right: 10px;
+    /* Add space between the logo and username text */
+}
+
+/* Dropdown Content */
+.username .dropdown-content {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    /* Position dropdown below the username */
+    left: 0;
+    /* Align dropdown with the logo */
+    background-color: white;
+    /* White background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow */
+    z-index: 1000;
+    /* Ensure it appears on top */
+    border-radius: 6px;
+    /* Rounded corners */
+    min-width: 150px;
+    /* Set width for dropdown */
+    padding: 10px 0;
+    /* Padding inside the dropdown */
+}
+
+/* Dropdown Buttons */
+.username .dropdown-content button {
+    background-color: white;
+    /* White background */
+    color: black;
+    /* Default text color */
+    border: none;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    /* Full width of the dropdown */
+    cursor: pointer;
+    transition: color 0.3s;
+    /* Smooth transition for text color */
+}
+
+/* Hover Effects for Dropdown Buttons */
+.username .dropdown-content button:hover {
+    color: green;
+    /* Text turns green on hover */
+    background-color: white;
+    /* Keep background white */
+}
+
+/* Show Dropdown on Hover */
+.username:hover .dropdown-content {
+    display: block;
+    /* Show dropdown when hovering over the username */
+}
+
+.navbuttons a:hover{
+    color: #FFDD44;
+}
+
+.backbutton {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.bi-cart {
+  font-size: 1.5rem; /* Set appropriate size */
+  color: white; /* Default color for the icon */
+  margin-left: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.bi-cart:hover {
+  color: #FFDD44; /* Change color on hover */
+  transform: scale(1.2); /* Slight zoom effect */
+}
+.confirmation-section {
+    padding: 50px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.confirmation-section h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.confirmation-section h2 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.confirmation-section p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.confirmation-section form {
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+}
+
+.confirmation-section label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.confirmation-section textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.confirmation-section button {
+    background-color: #5cb85c;
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirmation-section button:hover {
+    background-color: #4cae4c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav .nav-links {
+        text-align: center;
+    }
+
+    header .nav-links li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .confirmation-section {
+        padding: 30px 15px;
+    }
+
+    .confirmation-section h1 {
+        font-size: 28px;
+    }
+
+    .confirmation-section h2 {
+        font-size: 20px;
+    }
+
+    .confirmation-section textarea {
+        height: 80px;
+    }
+
+    .confirmation-section button {
+        width: 100%;
+    }
+}

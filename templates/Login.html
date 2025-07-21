@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="../static/login.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../static/images/login_cartoon.png" alt="Logo Cartoon">
+    </div>
+  </header>
+
+  <main class="login-container">
+    <div class="welcome-section">
+      <div class="logo1">
+        <img src="../static/images/login_cartoon.png" alt="Logo Cartoon" id="logoCartoon">
+      </div>
+      <h1>WELCOME BACK</h1>
+    </div>
+    <div class="form-container">
+      <h2>Login</h2>
+      <form method="POST" action="/login">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+         <a href="/Cpass" class="forgot-password">Forgot Password?</a>
+        <button type="submit">LOGIN</button>
+      </form>
+      <p>Not a member? <a href="/signup">Sign up</a></p>
+    </div>
+  </main>
+
+  <!-- JavaScript to show pop-up messages -->
+  <script>
+    const message = "{{ message }}";
+    if (message) {
+      alert(message); // Show the pop-up message
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Collaborations{% endblock %}
+
+{% block content %}
+
+    <div class="top-bar">
+        <h1>NEWater</h1>
+        <div class="dropdown-container">
+            <button class="dropdown-btn" onclick="toggleDropdown()">☰ Menu</button>
+            <div class="dropdown-content" id="dropdown">
+                <a href="/Collab1">Singapore Green Plan 2030</a>
+                <a href="/Collab2">HDB Green Towns Programme</a>
+                <a href="/Collab3">National recycling programme</a>
+                <a href="/Collab4">NEWater</a>
+                <a href="/Collab5">OneMillionTrees movement</a>
+                <a href="/Collab6">Walk Cycle Ride SG Programme</a>
+                <a href="/Collab7">Agri-food cluster transformation (ACT fund)</a>
+                <a href="/Collab8">Zero Waster Masterplan</a>
+                <a href="/Collab9">National Hydrogen Strategy</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="textbox">
+        <p><b>NEWater</b> is Singapore's innovative high-grade reclaimed water, produced through advanced purification processes that treat used
+            water to meet stringent quality standards. Using a combination of microfiltration, reverse osmosis, and ultraviolet disinfection,
+            NEWater is ultra-clean and safe for both non-potable and potable uses. It plays a crucial role in enhancing Singapore's water
+            sustainability by reducing reliance on imported water and providing a reliable source of water for industrial and drinking purposes.
+            NEWater is a cornerstone of Singapore's water management strategy, showcasing the country's commitment to innovation and self-sufficiency
+            in water resources.</p>
+    </div>
+    <div class="bottom-section">
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/9h4sYzd4OVk?si=zeAeMckurzSoI-Ge" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+            <a href="{{ url_for('Donation') }}" class="donate-btn">Donate</a>
+    </div>
+
+<script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdown");
+            dropdown.classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
+{% endblock %}

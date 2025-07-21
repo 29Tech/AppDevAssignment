@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Retrieve Donations{% endblock %}
+{% block content %}
+<div class="retrieveDonations">
+    <a href="/"><img class="back" src="{{ url_for('static', filename='backbutton.png')}}"></a>
+    <div class="background">
+        <h1 class="display-4">View Past Donations</h1>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Donation ID</th>
+                        <th>Credit Card Number</th>
+                        <th>Date</th>
+                        <th>CVV</th>
+                        <th>Name</th>
+                        <th>Society</th>
+                        <th>Donated Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for donation in donations_list %}
+                    <tr>
+                        <td>{{ donation.get_donation_id() }}</td>
+                        <td>{{ donation.get_creditcard() }}</td>
+                        <td>{{ donation.get_date() }}</td>
+                        <td>{{ donation.get_cvv() }}</td>
+                        <td>{{ donation.get_name() }}</td>
+                        <td>{{ donation.get_society() }}</td>
+                        <td>{{ donation.get_donateamt() }}</td>
+                        <td>
+                            <form action="{{url_for('delete_donation', id=donation.get_donation_id())}}" method="POST">
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

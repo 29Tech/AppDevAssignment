@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Don Don Donki - Create User{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<div class="gold">
+  <a href="{{ url_for('subHome') }}" class="btn btn-secondary back-button">Back!</a>
+  <h1 class="title">Subscribe to Us!</h1>
+
+  <div class="form-container">
+    <form method="POST" action="" class="yellow-bg">
+      <div class="form-group">
+        {{ render_field(form.first_name, class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.last_name, class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.gender, class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.email, class="form-control") }}
+      </div>
+      <div id="prof">
+        <div class="form-group">
+          {{ render_field(form.remarks, class="form-control") }}
+        </div>
+      </div>
+      <input type="submit" value="Submit" class="btn btn-primary learn-more"/>
+    </form>
+
+
+    <div class="update-section">
+      <p>Already a subscriber? You can update your details here!</p>
+      <a href="{{ url_for('chooseSub') }}" class="btn btn-info">Update Subscription</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FFD700; /* Yellow background */
+  color: black;
+}
+
+header {
+  display: none; /* Hide the header if it's not part of the main content */
+}
+
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 50px;
+}
+
+.welcome-section {
+  flex: 1;
+  text-align: center;
+}
+
+.welcome-section .welcome-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.welcome-section h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.form-container {
+  flex: 1;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 350px;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+}
+
+form a.forgot-password {
+  text-align: right;
+  color: black;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+form a.forgot-password:hover {
+  text-decoration: underline;
+}
+
+form button {
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: darkblue;
+}
+
+form p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+form a {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+.logo1 img {
+  width: 500px; /* Adjust width for a bigger size */
+  height: auto; /* Maintain aspect ratio */
+  cursor: pointer; /* Ensure it's still clickable */
+}

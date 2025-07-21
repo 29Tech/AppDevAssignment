@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <link rel="stylesheet" href="../static/myaccount.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- Bootstrap Icons -->
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('aftlogin') }}">
+                <img src="../static/images/Logo.jpg" alt="Logo" id="logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/Collab1">Our Collaborations</a></li>
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/subscription">Promotion</a></li>
+                <li><a href="/productUser">Store</a></li>
+                <li><i class="bi bi-cart"></i></li>
+                <li class="username">
+                    <img src="../static/images/accountLOGO.png" alt="accountlogo" class="account-logo">
+                    <span>{{ user['name'] }}</span> <!-- Display name as username -->
+                    <div class="dropdown-content">
+                        <button onclick="window.location.href='/myaccount';">My Account</button>
+                        <button onclick="window.location.href='/retrieve_receipts';">My Purchase</button>
+                        <button onclick="window.location.href='/signout';">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" class="active"><i class="bi bi-person-circle"></i> Profile</a></li>
+                <li><a href="{{ url_for('cpass') }}"><i class="bi bi-shield-lock"></i> Change Password</a></li>
+                <li><a href="{{ url_for('dashboard') }}"><i class="bi bi-box-seam"></i> History </a></li>
+                <li><a href="{{ url_for('index') }}"><i class="bi bi-ticket"></i> My Vouchers</a></li>
+            </ul>
+        </aside>
+        <div class="user-information">
+            <h2>Welcome, {{ user.username }}</h2>
+
+            <h3>Your Receipts</h3>
+            <ul>
+                {% for receipt in user.receipts %}
+                <li class = "display-list">
+                    <strong>Receipt ID:</strong> {{ receipt.receipt_id }} <br>
+                    <strong>Total:</strong> ${{ receipt.total_price }} <br>
+                    <strong>Payment Method:</strong> {{ receipt.payment_method }} <br>
+                    <strong>Items:</strong>
+                    <ul>
+                        {% for item in receipt['items'] %}
+                        <li>{{ item.name }} - Quantity: {{ item.quantity }} - Price: ${{ item.price }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+            <h3>Your Donations</h3>
+            <ul>
+                {% for donation in user.donations %}
+                <li class = "display-list">
+                    <strong>Donation ID:</strong> {{ donation.donation_id }} <br>
+                    <strong>Society:</strong> {{ donation.society }} <br>
+                    <strong>Amount:</strong> ${{ donation.amount }} <br>
+                    <strong>Date:</strong> {{ donation.date }} <br>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>

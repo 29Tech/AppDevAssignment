@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Collaborations{% endblock %}
+
+{% block content %}
+
+    <div class="top-bar">
+        <h1>Singapore Green Plan 2030</h1>
+        <div class="dropdown-container">
+            <button class="dropdown-btn" onclick="toggleDropdown()">☰ Menu</button>
+            <div class="dropdown-content" id="dropdown">
+                <a href="/Collab1">Singapore Green Plan 2030</a>
+                <a href="/Collab2">HDB Green Towns Programme</a>
+                <a href="/Collab3">National recycling programme</a>
+                <a href="/Collab4">NEWater</a>
+                <a href="/Collab5">OneMillionTrees movement</a>
+                <a href="/Collab6">Walk Cycle Ride SG Programme</a>
+                <a href="/Collab7">Agri-food cluster transformation (ACT fund)</a>
+                <a href="/Collab8">Zero Waster Masterplan</a>
+                <a href="/Collab9">National Hydrogen Strategy</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="textbox">
+        <p>The <b>Singapore Green Plan 2030</b> is a national sustainability agenda aimed at combating climate change and securing a greener future for Singapore.
+            It focuses on five key pillars: <b>City in Nature</b>, which enhances green spaces and biodiversity; <b>Sustainable Living</b>, promoting eco-friendly practices
+            among individuals and communities; <b>Energy Reset</b>, transitioning to cleaner energy and boosting energy efficiency; <b>Green Economy</b>, fostering green
+            industries and innovation; and <b>Resilient Future</b>, building climate resilience and food security. Key targets include reducing emissions, increasing
+            solar energy deployment, planting 1 million trees, and achieving net-zero emissions as soon as viable. The plan involves collaboration across
+            government, businesses, and communities, positioning Singapore as a global leader in sustainability while ensuring a livable and resilient city for
+            future generations.</p>
+    </div>
+    <div class="bottom-section">
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/oNFeOl7pW9s?si=CGYGLqsvY0KxuCc3" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+            <a href="/Donation" class="donate-btn">Donate</a>
+    </div>
+
+<script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdown");
+            dropdown.classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
+{% endblock %}

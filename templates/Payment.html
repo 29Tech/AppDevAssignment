@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+
+<div class="paymentMainBody">
+  <h1 class="display-4">Payment</h1>
+  <div class="paymentForm">
+    <div class="payment-items">
+      <h3>Your Items</h3>
+      <div class="paymentItemList">
+        {% for item in items %}
+        <div id="item-{{ item.id }}" class="counter">
+          <li>{{ item.name }} [{{item.quantity}}] - ${{ item.price }}</li>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="totalPrice">
+        <li>
+          <p>Total: ${{ total_price }}</p>
+        </li>
+      </div>
+
+
+    </div>
+    <form class="paymentProcess" method="POST" action="">
+      <div class="form-group1">
+        <label>Payment Method:</label>
+        <ul class="list-unstyled">
+          {% for subfield in form.paymentMethod %}
+          <li class="form-check">
+            <label>
+              <input type="radio" id="{{ subfield.id }}" name="{{ form.paymentMethod.name }}"
+                value="{{ subfield.data }}" {% if subfield.checked %}checked{% endif %}>
+              {{ subfield.label.text }}
+              <img src="{{ url_for('static', filename='images/' + subfield.data + '.png') }}"
+                alt="{{ subfield.label.text }}" style="width: 50px; height: auto;">
+            </label>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="form-group">
+        {{ render_field(form.creditcard, class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.date, class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.cvv, class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.name, class="form-control") }}
+      </div>
+      <div class="button">
+        <a href="/productUser" class="btn btn-primary">Back</a>
+        <input type="submit" value="Submit" class="btn btn-primary" />
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
